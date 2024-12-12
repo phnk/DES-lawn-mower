@@ -1,9 +1,9 @@
 from .sla_factory import SLAFactory
 import random
 
-MAX_SLA_RNG = 30
-MAX_PAY_RNG = 30
-MAX_COMPLETE_TIME = 30
+MAX_SLA_RNG = 5
+MAX_PAY_RNG = 10
+MAX_COMPLETE_TIME = 2
 
 class State:
     def __init__(self, seed, number_of_mowers, number_of_techs, p_violation, c_min, c_max, t_min, t_max, runtime):
@@ -62,7 +62,6 @@ class State:
             raise Exception("SLA id used is larger than the SLA list length in state")
         return self.sla_list[id]
 
-
     def take_mowers(self, num_mowers):
         if self.available_number_of_mowers < num_mowers:
             # TODO(carl): what do we do when we can't create the service? wait?
@@ -98,7 +97,7 @@ class State:
     def get_time(self):
         return self.time
 
-    def update_time(self, ts):
+    def add_time(self, ts):
         self.time += ts
 
     def seed_rng(self, seed):

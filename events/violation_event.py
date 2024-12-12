@@ -11,6 +11,7 @@ class ViolationEvent(Event):
         SLA = self.get_state().get_SLA(self.id)
 
         SLA.set_status("VIOLATION")
+        self.get_state().add_time(self.get_time())
 
         # Resolve time
         resolve_time = self.get_state().get_time() * self.get_state().get_violation_time()

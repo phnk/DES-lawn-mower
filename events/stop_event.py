@@ -7,6 +7,8 @@ class StopEvent(Event):
     def execute(self):
         state = self.get_state()
 
+        self.get_state().add_time(self.get_time())
+
         # what do i do with the state here?
         state.stop_sim()
 

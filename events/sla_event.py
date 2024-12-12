@@ -8,6 +8,8 @@ class CreateSLAEvent(Event):
     def execute(self):
         # create SLA
         id = self.get_state().get_SLA()
+
+        self.get_state().add_time(self.get_time())
         # random violation event
 
         # create pay event with some random

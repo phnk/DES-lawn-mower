@@ -14,8 +14,8 @@ class PayEvent(Event):
         SLA = self.get_state().get_SLA_list(self.id)
         SLA.change_payment_status("PAYMENT_COMPLETE")
 
-        # TODO(carl): need to take the number of mowers
         self.get_state().take_mowers(SLA.number_of_lawn_mowers())
+        self.get_state().add_time(self.get_time())
 
         # TODO(carl): add a chance for the payment to fail and decide what to do with the SLA. Drop?
         if self.get_state().get_violation_rng():

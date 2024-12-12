@@ -10,6 +10,8 @@ class StartEvent(Event):
         state = self.get_state()
         queue = self.get_queue()
 
+        self.get_state().add_time(self.get_time())
+
         # what do i do with the state here?
         create_time = self.get_state().get_time() + self.get_state().get_next_SLA_time()
 

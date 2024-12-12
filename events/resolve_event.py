@@ -11,5 +11,10 @@ class ResolveViolationEvent(Event):
         SLA = self.get_state().get_SLA(self.id)
 
         SLA.set_status("ON_GOING")
+        self.get_state().add_time(self.get_time())
 
-        # TODO(carl): generate chance of violation else complete event
+        # TODO(carl): add a chance for the payment to fail and decide what to do with the SLA. Drop?
+        # generate complete event?
+        complete_time = self.get_state().get_time() * self.get_state().get_complete_time()
+        self.get_queue().add_event(CompleteEvent(self.id, self.get_state(), self.get_queue(), complete_time))
+
